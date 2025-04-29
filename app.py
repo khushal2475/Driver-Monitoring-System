@@ -40,10 +40,10 @@ mysql = MySQL(app)
 current_user_id = None
 
 # Update Twilio configuration with your credentials
-TWILIO_ACCOUNT_SID = 'AC9d11ee651425855d4c4c3621d4c565e7'
-TWILIO_AUTH_TOKEN = '63d5382999d0e7660f0e44b047138318'
-TWILIO_WHATSAPP_NUMBER = 'whatsapp:+14155238886'
-WHATSAPP_FROM_NUMBER = 'whatsapp:+14155238886'
+TWILIO_ACCOUNT_SID = '
+TWILIO_AUTH_TOKEN = '
+TWILIO_WHATSAPP_NUMBER = #make a twillo account 
+WHATSAPP_FROM_NUMBER = '
 
 # Drowsiness alert threshold
 DROWSINESS_ALERT_THRESHOLD = 2

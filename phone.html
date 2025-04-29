@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Alert Setup</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        h2 {
+            color: #075e54;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 5px rgba(7, 94, 84, 0.2);
+        }
+        .setup-steps {
+            display: flex;
+            justify-content: space-around;
+            background: #f1f8e9;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .step {
+            text-align: center;
+            flex: 1;
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+        .step:hover {
+            transform: scale(1.1);
+        }
+        .step-number {
+            background: #25d366;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+        .image-container {
+            margin: 40px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+        .image-container:hover {
+            transform: scale(1.03);
+        }
+        .image-container img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        .input-group {
+            margin: 40px 0;
+            text-align: left;
+        }
+        label {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            background: #f9fafb;
+            transition: all 0.3s ease;
+        }
+        input[type="text"]:focus {
+            border-color: #25d366;
+            box-shadow: 0 0 12px rgba(37, 211, 102, 0.3);
+            background: #fff;
+            outline: none;
+        }
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        button {
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+        }
+        .save-btn {
+            background: #25d366;
+            color: white;
+        }
+        .save-btn:hover {
+            background: #1fa855;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+        .skip-btn {
+            background: #6c757d;
+            color: white;
+        }
+        .skip-btn:hover {
+            background: #5a6268;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+        }
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+            display: none;
+            transition: opacity 0.3s ease;
+        }
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .setup-steps {
+                flex-direction: column;
+            }
+            .button-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fab fa-whatsapp me-2"></i>WhatsApp Alert Setup</h2>
+
+        <div class="setup-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <p>Scan QR Code</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <p>Enter WhatsApp Number</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <p>Start Monitoring</p>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img src="/static/twilo.jpg" alt="Connect to WhatsApp Sandbox" 
+                 onerror="handleImageError(this)">
+            <div class="error-message" style="display: none; color: #721c24;">Unable to load QR code image</div>
+        </div>
+
+        <div class="input-group">
+            <label for="whatsappNumber">
+                <i class="fas fa-phone"></i> Enter WhatsApp Number (with country code)
+            </label>
+            <input type="text" 
+                   id="whatsappNumber" 
+                   placeholder="+91XXXXXXXXXX" 
+                   required>
+        </div>
+
+        <div class="button-group">
+            <button class="save-btn" onclick="saveNumber()">
+                <i class="fas fa-save me-2"></i>Save & Continue
+            </button>
+            <button class="skip-btn" onclick="window.location.href='/dashboard'">
+                <i class="fas fa-forward me-2"></i>Skip
+            </button>
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        function handleImageError(img) {
+            img.style.display = 'none';
+            img.parentElement.querySelector('.error-message').style.display = 'block';
+        }
+
+        function saveNumber() {
+            const number = document.getElementById('whatsappNumber').value.trim();
+            const messageDiv = document.getElementById('message');
+
+            if (!number) {
+                showMessage('Please enter a WhatsApp number', 'error');
+                return;
+            }
+            if (!number.startsWith('+') || !/^\+\d{10,14}$/.test(number)) {
+                showMessage('Invalid WhatsApp number format (e.g., +12025550123)', 'error');
+                return;
+            }
+
+            fetch('/save_whatsapp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `whatsapp_number=${encodeURIComponent(number)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Save WhatsApp response:', data);
+                if (data.status === 'success') {
+                    showMessage('Number saved successfully!', 'success');
+                    setTimeout(() => {
+                        window.location.href = '/dashboard';
+                    }, 1500);
+                } else {
+                    showMessage(data.message || 'Error saving number', 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error saving WhatsApp:', error);
+                showMessage('Error saving number', 'error');
+            });
+        }
+
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>

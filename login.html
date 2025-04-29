@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Driver Monitoring System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: url("/static/image.jpg") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      width: 400px;
+      animation: slideIn 0.6s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-card .header {
+      background: linear-gradient(135deg, #4a00e0, #007bff);
+      padding: 30px 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .login-card .header h2 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .login-card .header p {
+      margin: 5px 0 0;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .login-card .card-body {
+      padding: 30px 25px;
+    }
+
+    .form-group label {
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      padding: 10px 14px;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    }
+
+    .form-group:hover .form-control {
+      transform: scale(1.02);
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      background: #007bff;
+      border: none;
+      font-weight: 500;
+      color: #fff;
+      transition: background 0.3s ease;
+    }
+
+    .btn-login:hover {
+      background: #0056b3;
+    }
+
+    .text-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .text-link a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .text-link a:hover {
+      text-decoration: underline;
+    }
+
+    .alert {
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <div class="header">
+      <h2>Login</h2>
+      <p>Access the Driver Monitoring System</p>
+    </div>
+    <div class="card-body">
+      {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+      {% endif %}
+
+      <form method="POST" action="{{ url_for('login') }}">
+        <div class="form-group mb-3">
+          <label for="email">Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group mb-3">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        <div class="form-group mb-4">
+          <label for="user_type">Login As</label>
+          <select class="form-control" id="user_type" name="user_type" required>
+            <option value="users">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-login">Login</button>
+      </form>
+
+      <div class="text-link">
+        <p>Don’t have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
